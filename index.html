@@ -287,111 +287,70 @@
         -->
 
         <section class="testimonials">
-
           <h3 class="h3 testimonials-title">Testimonials</h3>
-
+        
           <ul class="testimonials-list has-scrollbar">
-
-            <li class="testimonials-item">
+            <li class="testimonials-item" data-id="1">
               <div class="content-card" data-testimonials-item>
-
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="60" data-testimonials-avatar>
+                  <img src="./assets/images/avatar-1.png" alt="Venkatesh TK" width="60" data-testimonials-avatar>
                 </figure>
-
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Venkatesh TK</h4>
-
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Senior Manager, Acer India Pvt Ltd.
-                  </p>
+                  <p>Senior Manager, Acer India Pvt Ltd.</p>
                 </div>
-
               </div>
             </li>
-
-            <li class="testimonials-item">
+        
+            <li class="testimonials-item" data-id="2">
               <div class="content-card" data-testimonials-item>
-
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-1.png-2.png" alt="Jessica miller" width="60" data-testimonials-avatar>
+                  <img src="./assets/images/avatar-1.png" alt="Mahesh D" width="60" data-testimonials-avatar>
                 </figure>
-
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Mahesh D</h4>
-
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                   Assistant Manager, Acer India Pvt Ltd.
-                  </p>
+                  <p>Assistant Manager, Acer India Pvt Ltd.</p>
                 </div>
-
               </div>
             </li>
-            <li class="testimonials-item">
+        
+            <li class="testimonials-item" data-id="3">
               <div class="content-card" data-testimonials-item>
-
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-1.png-2.png" alt="Jessica miller" width="60" data-testimonials-avatar>
+                  <img src="./assets/images/avatar-1.png" alt="Thrinadh Vagicherla" width="60" data-testimonials-avatar>
                 </figure>
-
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Thrinadh Vagicherla</h4>
-
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                   Technical Manager, Talentpace Pvt Ltd
-                  </p>
+                  <p>Technical Manager, Talentpace Pvt Ltd.</p>
                 </div>
-
               </div>
             </li>
           </ul>
         </section>
+        
+        
+      <!-- Modal (generic) -->
+      <div class="modal-container" data-modal-container>
+        <div class="overlay" data-overlay></div>
+        <section class="testimonials-modal">
+          <button class="modal-close-btn" data-modal-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
 
+          <div class="modal-img-wrapper">
+            <figure class="modal-avatar-box">
+              <img src="./assets/images/avatar-1.png" alt="" width="80" data-modal-img>
+            </figure>
+            <img src="./assets/images/icon-quote.svg" alt="quote icon">
+          </div>
 
-        <!--
-          - testimonials modal
-        -->
-
-        <div class="modal-container" data-modal-container>
-
-          <div class="overlay" data-overlay></div>
-
-          <section class="testimonials-modal">
-
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-            <div class="modal-img-wrapper">
-              <figure class="modal-avatar-box">
-                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
-              </figure>
-
-              <img src="./assets/images/icon-quote.svg" alt="quote icon">
-            </div>
-
-            <div class="modal-content">
-
-              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
-
-              <time datetime="2021-06-14">14 June, 2021</time>
-
-              <div data-modal-text>
-                <p>
-                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                  lot of experience
-                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                  consectetur adipiscing
-                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                </p>
-              </div>
-
-            </div>
-
-          </section>
-
-        </div>
-
+          <div class="modal-content">
+            <h4 class="h3 modal-title" data-modal-title></h4>
+            <time datetime="" data-modal-date></time>
+            <div data-modal-text class="testimonials-text"></div>
+          </div>
+        </section>
+      </div>
 
         <!--
           - clients
@@ -1090,3 +1049,69 @@
 </body>
 
 </html>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  // Data for testimonials
+  const testimonialsData = {
+    1: {
+      name: "Venkatesh TK",
+      role: "Senior Manager, Acer India Pvt Ltd.",
+      date: "2004-05-10",
+      formattedDate: "10 May, 2004",
+      imgSrc: "./assets/images/avatar-1.png",
+    },
+    2: {
+      name: "Mahesh D",
+      role: "Assistant Manager, Acer India Pvt Ltd.",
+      date: "2019-03-18",
+      formattedDate: "18 March, 2019",
+      imgSrc: "./assets/images/avatar-1.png",
+    },
+    3: {
+      name: "Thrinadh Vagicherla",
+      role: "Technical Manager, Talentpace Pvt Ltd.",
+      date: "2014-11-25",
+      formattedDate: "25 November, 2014",
+      imgSrc: "./assets/images/avatar-1.png",
+    },
+  };
+
+  const testimonialsItems = document.querySelectorAll(".testimonials-item");
+  const modal = document.querySelector(".modal-container");
+  const modalTitle = modal.querySelector("[data-modal-title]");
+  const modalDate = modal.querySelector("[data-modal-date]");
+  const modalText = modal.querySelector("[data-modal-text]");
+  const modalImg = modal.querySelector("[data-modal-img]");
+
+  testimonialsItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const id = item.getAttribute("data-id");
+      const data = testimonialsData[id];
+
+      // Set modal content dynamically
+      modalTitle.textContent = data.name;
+      modalDate.setAttribute("datetime", data.date);
+      modalDate.textContent = data.formattedDate;
+      modalText.textContent = data.role;
+      modalImg.setAttribute("src", data.imgSrc);
+      modalImg.setAttribute("alt", data.name);
+
+      // Open modal
+      modal.classList.add("active");
+    });
+  });
+
+  // Close modal functionality
+  const modalCloseBtn = modal.querySelector("[data-modal-close-btn]");
+  modalCloseBtn.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  // Close when clicking outside of the modal
+  const overlay = modal.querySelector("[data-overlay]");
+  overlay.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+});
+
+</script>
